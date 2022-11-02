@@ -1,24 +1,43 @@
 package b4;
-
 import java.util.Scanner;
 
 public class B4 {
-    public static void main(String[] args){
-        int n, cnt = 0;
-        int[] arr = new int[1000];
-        do{
-            System.out.println("Nhập vào n: ");
-            n = new Scanner(System.in).nextInt();
-        }while(n<= 0);
-        while(n>0){
-            int m=n%10; n/= 10;
-            if(m == 1 || m == 4 || m == 9)
-                arr[cnt++] = m;
+    public static boolean checkPrime(int n) {
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) {
+                return false;
+            }
         }
-        if(cnt == 0)
-            System.out.println("No");
-        else
-            for(int i = cnt-1 ; i>= 0; i--)
-                System.out.println(arr[i]+ " ");
+        return n > 1;
+    }
+
+    public static boolean checkDigitPrime(int n) {
+        while (n > 0) {
+            int x = n % 10;
+            if (x != 2 && x != 3 && x != 5 && x != 7) {
+                return false;
+            }
+            n /= 10;
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        boolean check = false;
+        for (int i = 0; i < n; i++) {
+            if (checkDigitPrime(arr[i]) && checkPrime(arr[i])) {
+                System.out.print(arr[i] + " ");
+                check = true;
+            }
+        }
+        if (!check) {
+            System.out.println("NO");
+        }
     }
 }
