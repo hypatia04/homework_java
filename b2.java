@@ -10,7 +10,7 @@ public class b2 {
         int dem = 0;
         for(int i=0; i<str2.length(); i++){
             for(int j = i+1; j<str2.length(); j++){
-                if(str1.indexOf(str2.substring(i,j)) != -1){
+                if(str1.contains(str2.substring(i,j))){
                     dem =Math.max(dem,j-i);
                 }
             }
